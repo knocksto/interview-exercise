@@ -1,11 +1,7 @@
 
 from enum import Enum
 import enum
-import math
 from typing import List
-
-import pytest
-# from textblob import TextBlob
 import re
 from collections import Counter
 
@@ -22,8 +18,6 @@ def sentiment_analyzer(text:str, wordList:List[str]):
     text_dict = dict(Counter(text_list))
     new_text_dict = {}
     score = 0
-    expression_dectector = ""
-    text_with_scores = {}
     
     for key, value in text_dict.items():
         if len(key) >= 3:
@@ -34,11 +28,11 @@ def sentiment_analyzer(text:str, wordList:List[str]):
             score = (value / total_text) * 100
             print(score)
             print(value)
-            if value >= 1 and score > 1:
+            if value >= 1 and score >= 1: # >=20% -> NEGATIVE
                 return Expression.NEGATIVE.name
-            elif value and score >= 0.6:
+            elif value and score >= 0.6: # <=5% -> POSITIVE
                   return Expression.POSITIVE.name
-            elif value and score <= 0.6:
+            elif value and score <= 0.6: # 5-20% -> NEUTRAL
                 return Expression.NEUTRAL.name
     
     print(score)
