@@ -16,8 +16,6 @@ def get_sentiment(file_name):
         if len(word) >= 3:
             final_words.append(word)
     total_word_count = len(final_words)
-    print(final_words)
-    print(total_word_count)
 
     for word in final_words:
         if word in negative_words:
@@ -28,17 +26,13 @@ def get_sentiment(file_name):
 
     if sentiment_percentage < 5:
         print("POSITIVE")
-        # return "POSITIVE"
+        return "POSITIVE"
     elif sentiment_percentage > 20:
         print("NEGATIVE")
-        # return "NEGATIVE"
+        return "NEGATIVE"
     else:
         print("NEUTRAL")
-        # return "NEUTRAL"
-
-    print(file_negative_words)
-    print(negative_word_count)
-    print(sentiment_percentage)
+        return "NEUTRAL"
 
 
 if __name__ == '__main__':
