@@ -12,7 +12,7 @@ class SentimentTest(object):
     worldList = ["ugly"]
 
     @testcase
-    def test_negative(self, env, result):
+    def test_sentiment(self, env, result):
         result.equal(sentiment_analyzer(self.text, self.worldList), "NEGATIVE", description='Passing assertion')
         result.equal(sentiment_analyzer(self.text,self.worldList), "POSITIVE", description='Failing assertion')
 
