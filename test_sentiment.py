@@ -13,7 +13,7 @@ class SentimentTest(object):
 
     @testcase
     def test_negative(self, env, result):
-        result.equal(sentiment_analyzer("The world is a ugly place to live in terrible. ugly! terrible", ["ugly"]), "NEGATIVE", description='Passing assertion')
+        result.equal(sentiment_analyzer("The world is a ugly place to live in ulgly. ugly! terrible", ["ugly"]), "NEGATIVE", description='Passing assertion')
         result.equal(sentiment_analyzer("The world is a ugly place to live in terrible. terrible", ["ugly"]), "POSITIVE", description='Failing assertion')
 
 

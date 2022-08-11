@@ -15,6 +15,7 @@ class Expression(enum.Enum):
     NEUTRAL = "NEUTRAL"
 
 def sentiment_analyzer(text:str, wordList:List[str]):
+    
     total_text = len(text)
     text_list = re.split('[ !.,]', text)
     text_dict = dict(Counter(text_list))
