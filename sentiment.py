@@ -13,39 +13,34 @@ class Expression(enum.Enum):
 
 
 def sentiment_analyzer(text:str):
+    
     wordList = ["sad","terrible","angry","mad","bad","ugly","awful","stupid"]
-    total_text = len(text)
-    print(total_text)
     text_list = re.split('[ !.,]', text.lower())
     text_dict = dict(Counter(text_list))
-    new_text_dict = {}
     score = 0
     total = 0
     word_in_list_size = 0
     
     for key, value in text_dict.items():
         if len(key) >= 3:
-            new_text_dict[key] = value
+            word_in_list_size += value
+            if key in wordList:
+                total += value
+        
+    if total > 0: 
+        score = (total / word_in_list_size) * 100
+    else:
+        raise ZeroDivisionError("text cant be empty")
 
-    for key,value in new_text_dict.items():
-        word_in_list_size += value
-
-    for key, value in new_text_dict.items():
-        if key in wordList:
-            total += value
-
-    score = (total / word_in_list_size) * 100
-    print(score)
-    print(total)
     
     if score >= 20: # >=20% -> NEGATIVE
         return Expression.NEGATIVE.name
-    if score <= 5: # <=5% -> POSITIVE
+    elif score <= 5: # <=5% -> POSITIVE
         return Expression.POSITIVE.name
-    if score > 5 and score < 20: # 5-20% -> NEUTRAL
+    elif score > 5 and score < 20: # 5-20% -> NEUTRAL
         return Expression.NEUTRAL.name
     
     return -1
 
 
-print(sentiment_analyzer(""))
+print(sentiment_analyzer("The world is a terrible place to live in. Terrible!"))
