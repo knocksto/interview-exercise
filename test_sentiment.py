@@ -1,6 +1,5 @@
 import sys
 
-# from pywin.mfc.object import Object
 from testplan import test_plan
 from testplan.testing.multitest import MultiTest, testcase, testsuite
 from sentiment import sentiment_analyzer
@@ -9,12 +8,10 @@ from sentiment import sentiment_analyzer
 @testsuite
 class SentimentTest(object):
     text = "The world is a ugly place to live in terrible. ugly! terrible"
-    worldList = ["ugly"]
-
     @testcase
     def test_sentiment(self, env, result):
-        result.equal(sentiment_analyzer(self.text, self.worldList), "NEGATIVE", description='Passing assertion')
-        result.equal(sentiment_analyzer(self.text,self.worldList), "POSITIVE", description='Failing assertion')
+        result.equal(sentiment_analyzer(self.text), "NEGATIVE", description='Passing assertion')
+        result.equal(sentiment_analyzer(self.text), "POSITIVE", description='Failing assertion')
 
 
 @test_plan(name='Sentiment')
