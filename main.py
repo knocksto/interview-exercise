@@ -1,9 +1,12 @@
+import re
+
 negative_word_list = ["bad", "ugly", "terrible", "awful", "stupid", "mad", "angry", "sad"]
 
 
 def sentiment_analysis(text_excerpt):
-    # replace all punctuations with space and convert to list of words
-    text_excerpt = text_excerpt.replace(" ", " ").replace(",", " ").replace(".", " ").replace("!", " ").lower().split()
+    # replace all commas,exclamation marks and full stops with space and convert to list of words
+    text_excerpt = re.sub('[,.!]', ' ', text_excerpt).lower().split()
+    print(text_excerpt)
 
     new_text_excerpt = [word for word in text_excerpt if len(word) >= 3]  # get rid of all words < 3,store in new list
 
@@ -23,4 +26,4 @@ def sentiment_analysis(text_excerpt):
 
 
 if __name__ == '__main__':
-    print(sentiment_analysis("The world is a terrible place to live in. Terrible!"))
+    print(sentiment_analysis("The world, is a terrible place to live in.Terrible!"))
